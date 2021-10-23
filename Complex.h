@@ -1,3 +1,7 @@
+//Complex.h
+//#ifndef Complex_h
+//#define Complex_h
+
 #include<iostream>
 using std::cout;
 using std::cin;
@@ -17,12 +21,18 @@ class Complex{
   //Imaginary part
   double imag_part() const {return imag_;}
   //magnitude
-  double mag (double real, double imag) const;
+  double mag () const;
   //phase
-  double phase(double real, double imag) const;
+  double phase() const;
+
+  //Setter Method
+  void setReal(double real){real_ = real;}
+  void setImag(double imag){imag_=imag;}
   
+  //utility fuction
+  void print(const std::string& complexnumber) const;
   
- private:
+private:
   double real_;
   double imag_;
 };
