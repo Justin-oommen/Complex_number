@@ -15,15 +15,15 @@ Complex::Complex(double real, double imag){
   imag_ = imag;
 }
 
-double Complex:: mag (double real, double imag){
+double Complex:: mag () const{
   return sqrt (pow (real_,2)+pow(imag_,2) );
 
 }
 
-double Complex::phase(double real, double imag){
-  return atan(real_/imag_);
+double Complex::phase() const{
+  return atan(imag_/real_);
 }
 
 void Complex::print(const std::string& complexnumber) const {
-  cout << "complex number ="<< real_ <<" + "<<"i("<<imag_<<")"<<endl;
+  cout << complexnumber <<" = "<< real_ <<"+ i("<<imag_<<")"<<endl;
 }
