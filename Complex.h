@@ -8,12 +8,14 @@ using std::cin;
 using std::endl;
 
 class Complex{
- public:
+public:
   
   //Default Constructor
   Complex();
   //Regular Constructor
   Complex(double real, double imag);
+  //Destructor
+  ~Complex(){};
   //Conjugate
   Complex conj();
   //Getter Method
@@ -25,30 +27,39 @@ class Complex{
   double mag () const;
   //phase
   double phase() const;
-
+  
   //Setter Method
   void setReal(double real){real_ = real;}
   void setImag(double imag){imag_=imag;}
-
+  
   //Overloading Operators +,-,*,/ respectively
 
   Complex operator+ (const Complex& rhs) const;
   Complex operator- (const Complex& rhs) const;
   Complex operator* (const Complex& rhs) const;
   Complex operator/ (const Complex& rhs) const;
-
+  
   //Interaction between Complex and double object
   Complex operator+(const double& rhs) const;
   Complex operator-(const double& rhs) const;
   Complex operator*(const double& rhs) const;
   Complex operator/(const double& rhs) const;
 
+  //Overloading of =, +=,-=,*=, /=
+  Complex operator=(const Complex& rhs) const;
+  const Complex& operator+=(const Complex& rhs); 
+  const Complex& operator-=(const Complex& rhs); 
+  const Complex& operator*=(const Complex& rhs); 
+  const Complex& operator/=(const Complex& rhs); 
+
+  
   //using friend method to gloabl functions to access private data members
   friend Complex operator+(const double& lhs, const Complex& rhs);
   friend Complex operator-(const double& lhs, const Complex& rhs);
   friend Complex operator*(const double& lhs, const Complex& rhs);
   friend Complex operator/(const double& lhs, const Complex& rhs);
   
+
   //utility fuction
   void print(const std::string& complexnumber) const;
   
