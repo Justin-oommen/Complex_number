@@ -59,9 +59,9 @@ Complex Complex::operator*(const Complex& rhs) const{
   //( x1 + iy1 )*( x2 + iy2 )= (x1x2 -y1y2) + i(x1y2 + x2 y1)
 
   //product of real part
-  real = (real_*rhs.real_) - (imag_*rhs.imag_);
+  double real = (real_*rhs.real_) - (imag_*rhs.imag_);
   //product of imaginary part
-  imag = (real_*rhs.imag_) + (rhs.real_*imag_);
+  double imag = (real_*rhs.imag_) + (rhs.real_*imag_);
   //Result of the product
   return Complex(real,imag);
 }
@@ -70,9 +70,9 @@ Complex Complex::operator/(const Complex& rhs) const{
   //( x1 + iy1 )/( x2 + iy2 )=[ (x1x2 +y1y2) + i(x2y1 - x1 y2) ]/ (x2^2 + y2^2)
 
   //Real part
-  real = ((real_*rhs.real_)+(imag_*rhs.imag_))/(pow(rhs.real_,2)+pow(rhs.imag_,2));
+  double real = ((real_*rhs.real_)+(imag_*rhs.imag_))/(pow(rhs.real_,2)+pow(rhs.imag_,2));
   //Imaginary part
-  imag = ((rhs.real_*imag_)-(real_*rhs.imag_))/(pow(rhs.real_,2)+pow(rhs.imag_,2));
+  double imag = ((rhs.real_*imag_)-(real_*rhs.imag_))/(pow(rhs.real_,2)+pow(rhs.imag_,2));
   //Result of the Division
   return Complex(real,imag);
 }
@@ -97,10 +97,10 @@ Complex Complex::operator/(const double& rhs) const {
 
 //global functions
 Complex operator+(const double& lhs, const Complex& rhs){
-  return Complex (lhs+rhs.real_,lhs+rhs.imag_);
+  return Complex (lhs+rhs.real_,rhs.imag_);
 }
 Complex operator-(const double& lhs, const Complex& rhs){
-  return Complex (lhs-rhs.real_,lhs-rhs.imag_);
+  return Complex (lhs-rhs.real_,-rhs.imag_);
 }
 Complex operator*(const double& lhs, const Complex& rhs){
   return Complex (lhs*rhs.real_,lhs*rhs.imag_);
@@ -110,3 +110,41 @@ Complex operator/(const double& lhs, const Complex& rhs){
   double m = rhs.mag(); //magnitude of the complex number
   return Complex ((lhs*rhs.real_)/m, (lhs*rhs.imag_)/m);
 }
+/*
+//Overloading =, += , -=, *=, /= respetively
+const Complex& Complex::operator=(const Complex& rhs) {
+  real_ = rhs.real_;
+  imag_ = rhs.imag_;
+  return *this;
+}
+
+const Complex& Complex::operator+=(const Complex& rhs) {
+  real_ += rhs.real_;
+  imag_ +=rhs.img_;
+  return *this;
+}
+
+const Complex& Complex::operator-=(const Complex& rhs) {
+  real_ -= rhs.real_;
+  imag_ -= rhs.imag_;
+  return *this;
+}
+
+const Complex& Complex::operator*=(const Complex& rhs) {
+  //(a+ib)*(c+id) = (ac-bd) + i (ad+bc)
+
+  real_ = ((real_*=rhs.real_)-(imag_*=rhs.imag_));
+  imag_ = ((real_*=rhs.imag_)-(imag_*=rhs.real_));
+  return *this;
+}
+
+const Complex& Complex::operator/=(const Complex& rhs){
+  //(a+ib)/(c+id) = ((ac+bd)/m + i (cb-ad)/m)
+  double m = rhs.mag();
+  real_ = ((real_*rhs.real_)/=m)+((imag_*rhs.imag_)/=m);
+  imag_ = ((rhs.real_*imag_)/=m)-((real_*rhs.imag_)/=m);
+
+  return *this;
+}
+*/
+
